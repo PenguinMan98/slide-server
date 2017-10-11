@@ -8,18 +8,15 @@
 </head>
 <body>
 <h1 style="text-align: center;">Interactive Slides</h1>
-<p style="background-color: #eee;display: block;width: 600px;height: 400px;margin:0px auto;"></p>
+<textarea style="background-color: #eee;display: block;width: 600px;height: 400px;margin:0px auto;"></textarea>
 <button>Go</button>
 </body>
 <script>
     var Gun = new Gun('https://gun-fkeakheqff.now.sh/gun');
     console.log('ready', Gun);
-    Gun.get('slides').on(function(data,key){
-        console.log('I got a change to slides');
-        $('body > p').html(data.html);
-    });
+
     $('button').on('click',function(){
-        Gun.get('slides').put({'html':$('body > p').html()});
+        Gun.get('slides').put({'html':$('body > textarea').val()});
     });
 </script>
 </html>
