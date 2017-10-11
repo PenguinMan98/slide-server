@@ -1,0 +1,21 @@
+<html>
+<head>
+    <script
+            src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
+    <script src="https://gunjs.herokuapp.com/gun.js"></script>
+</head>
+<body>
+<h1 style="text-align: center;">Interactive Slides</h1>
+<p style="background-color: #eee;display: block;width: 600px;height: 400px;margin:0px auto;"></p>
+</body>
+<script>
+    var Gun = new Gun('https://gun-fkeakheqff.now.sh/gun');
+    console.log('ready', Gun);
+    Gun.get('slides').on(function(data,key){
+        console.log('I got a change to slides');
+        $('body > p').html(data.html);
+    });
+</script>
+</html>
