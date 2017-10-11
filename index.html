@@ -11,9 +11,9 @@
 <p style="background-color: #eee;display: block;width: 600px;height: 400px;margin:0px auto;"></p>
 </body>
 <script>
-    var Gun = new Gun('https://gun-fkeakheqff.now.sh/gun');
-    console.log('ready', Gun);
-    Gun.get('slides').on(function(data,key){
+    var gun = new Gun('https://gun-fkeakheqff.now.sh/gun');
+    console.log('ready', gun);
+    gun.get('slides').on(function(data,key){
         console.log('I got a change to slides');
         $('body > p').html(data.html);
     });

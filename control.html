@@ -12,11 +12,11 @@
 <button style="display: block; margin: 0px auto;">Go!</button>
 </body>
 <script>
-    var Gun = new Gun('https://gun-fkeakheqff.now.sh/gun');
-    console.log('ready', Gun);
+    var gun = new Gun('https://gun-fkeakheqff.now.sh/gun');
+    console.log('ready', gun);
 
     $('button').on('click',function(){
-        Gun.get('slides').put({'html':$('body > textarea').val()});
+        gun.get('slides').put({'html':$('body > textarea').val()});
     });
 </script>
 </html>
