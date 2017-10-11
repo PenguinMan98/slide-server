@@ -8,14 +8,14 @@
 </head>
 <body>
 <h1 style="text-align: center;">Interactive Slides</h1>
-<p style="background-color: #eee;display: block;width: 600px;height: 400px;margin:0px auto;"></p>
+<textarea readonly="true" style="background-color: #eee;display: block;width: 600px;height: 400px;margin:0px auto;"></textarea>
 </body>
 <script>
     var gun = new Gun('https://gun-fkeakheqff.now.sh/gun');
     console.log('ready', gun);
     gun.get('slides').on(function(data,key){
         console.log('I got a change to slides');
-        $('body > p').html(data.html);
+        $('body > textarea').val(data.html);
     });
 </script>
 </html>
