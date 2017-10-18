@@ -15,13 +15,6 @@
 </body>
 <script>
     var gun = new Gun('https://gun-fkeakheqff.now.sh/gun');
-    console.log('ready', gun);
-    gun.get('slides').on(function(data,key){
-        $('body > textarea').val(data.html);
-    });
-    gun.get('dot').on(function(data,key){
-        moveDot(data.x, data.y);
-    });
     var moveDot = function( x, y ){
       x = parseInt(x);
       y = parseInt(y);
@@ -31,12 +24,20 @@
         left: x,
         top: y
       }, 500);
-    }
-    $('#dot').on('click', function(){
-      var dot = $(this);
-      var x = Math.floor(Math.random() * 570);
-      var y = Math.floor(Math.random() * 370);
-      gun.get('dot').put({'x':x,'y':y});
+    };
+    $(function(){
+      gun.get('slides').on(function(data,key){
+          $('body > textarea').val(data.html);
+      });
+      gun.get('dot').on(function(data,key){
+          moveDot(data.x, data.y);
+      });
+      $('#dot').on('click', function(){
+        var dot = $(this);
+        var x = Math.floor(Math.random() * 570);
+        var y = Math.floor(Math.random() * 370);
+        gun.get('dot').put({'x':x,'y':y});
+      });
     });
 </script>
 </html>
