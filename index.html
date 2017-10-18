@@ -9,13 +9,34 @@
 <body>
 <h1 style="text-align: center;">Interactive Slides</h1>
 <textarea readonly="true" style="background-color: #eee;display: block;width: 600px;height: 400px;margin:0px auto;"></textarea>
+<div id="fiddly-bit" style="position: relative;margin: 0 auto; width: 600px; height: 400px;">
+  <div id="dot" style="position: absolute; top: 0; left: 0; height: 15px; width: 15px; border-radius: 100%; background-color: red;"></div>
+</div>
 </body>
 <script>
     var gun = new Gun('https://gun-fkeakheqff.now.sh/gun');
     console.log('ready', gun);
     gun.get('slides').on(function(data,key){
-        console.log('I got a change to slides');
         $('body > textarea').val(data.html);
+    });
+    gun.get('dot').on(function(data,key){
+        moveDot(data.x, data.y);
+    });
+    var moveDot = function( x, y ){
+      x = parseInt(x);
+      y = parseInt(y);
+      if( x < 0 || x > 570 ){ x = 0; }
+      if( y < 0 || y > 370 ){ y = 0; }
+      $('#dot').animate({
+        left: x,
+        top: y
+      }, 500);
+    }
+    $('#dot').on('click', function(){
+      var dot = $(this);
+      var x = Math.floor(Math.random() * 570);
+      var y = Math.floor(Math.random() * 370);
+      gun.get('dot').put({'x':x,'y':y});
     });
 </script>
 </html>
