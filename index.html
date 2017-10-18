@@ -14,7 +14,7 @@
 </div>
 </body>
 <script>
-    var gun = new Gun('https://gun-jjbwvtqbei.now.sh/gun');
+    var gun = null;
     var moveDot = function( x, y ){
       x = parseInt(x);
       y = parseInt(y);
@@ -26,6 +26,7 @@
       }, 500);
     };
     $(function(){
+      gun = new Gun('https://gun-jjbwvtqbei.now.sh/gun');
       gun.get('slides').on(function(data,key){
           $('body > textarea').val(data.html);
       });
